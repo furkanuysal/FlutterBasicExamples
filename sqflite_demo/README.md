@@ -1,6 +1,9 @@
 # sqflite_demo
 
-A new Flutter project.
+A Flutter project with sqflite.
+
+![sqflite_demo](https://user-images.githubusercontent.com/60571747/125453177-d4f19a24-dd25-4578-a8e3-a6f6811c435a.gif)
+
 
 ## Getting Started
 
