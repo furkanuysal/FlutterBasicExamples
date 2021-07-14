@@ -11,7 +11,7 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
   DbHelper dbHelper = DbHelper();
-  List<Product> products;
+  List<Product>? products;
   int count = 0;
   @override
   Widget build(BuildContext context) {
@@ -49,12 +49,12 @@ class _ProductListPageState extends State<ProductListPage> {
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(this.products[position].imageUrl),
+                backgroundImage: NetworkImage(this.products![position].imageUrl!),
               ),
-              title: Text(this.products[position].name),
-              subtitle: Text(this.products[position].description),
+              title: Text(this.products![position].name),
+              subtitle: Text(this.products![position].description),
               onTap: () {
-                goToDetailsPage(products[position]);
+                goToDetailsPage(products![position]);
               },
             ),
           );
@@ -80,7 +80,7 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   void goToDetailsPage(Product product) async {
-    bool result = await Navigator.push(context,
+    bool? result = await Navigator.push(context,
         MaterialPageRoute(builder: (context) => ProductDetailsPage(product)));
     if (result != null) {
       if (result) {
@@ -90,7 +90,7 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   void goToAddProductPage() async {
-    bool result = await Navigator.push(
+    bool? result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => AddProductPage()));
     if (result != null) {
       if (result) {

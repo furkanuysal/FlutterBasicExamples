@@ -1,19 +1,19 @@
 class Product {
-  int _id;
-  String _name;
-  String _description;
-  String _imageUrl;
-  double _price;
+  int? _id;
+  String? _name;
+  String? _description;
+  String? _imageUrl;
+  double? _price;
 
   Product(this._name, this._description, this._price, this._imageUrl);
   Product.withId(
       this._id, this._name, this._description, this._imageUrl, this._price);
 
-  int get id => _id;
-  String get name => _name;
-  String get description => _description;
-  String get imageUrl => _imageUrl;
-  double get price => _price;
+  int? get id => _id;
+  String get name => _name!;
+  String get description => _description!;
+  String? get imageUrl => _imageUrl;
+  double get price => _price!;
 
   set name(String value) {
     if (value.length >= 2) {

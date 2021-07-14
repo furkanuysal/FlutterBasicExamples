@@ -59,8 +59,12 @@ class _AddProductPageState extends State<AddProductPage> {
 
   void save() async {
     int result = await dbHelper.insert(
-      Product(txtName.text, txtDescription.text, double.tryParse(txtPrice.text),
-          txtImage.text),
+      Product(
+        txtName.text,
+        txtDescription.text,
+        double.tryParse(txtPrice.text),
+        txtImage.text,
+      ),
     );
     if (result != 0) {
       Navigator.pop(context, true);

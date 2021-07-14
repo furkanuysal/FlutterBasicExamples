@@ -45,7 +45,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           height: 250,
             child: Image(
               fit: BoxFit.contain,
-              image: NetworkImage(product.imageUrl),
+              image: NetworkImage(product.imageUrl!),
             ),
           ),
           MyContainer(
@@ -142,7 +142,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 }
 
 class MyContainer extends StatelessWidget {
-  MyContainer({@required this.productName, @required this.size});
+  MyContainer({required this.productName, required this.size});
 
   final String productName;
   final double size;
