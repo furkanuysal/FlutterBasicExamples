@@ -1,6 +1,9 @@
 # gesture_animation
 
-A new Flutter project.
+A new Flutter project which is using GestureDetector and Animations.
+
+
+![gestureAnim](https://user-images.githubusercontent.com/60571747/127448963-ef57a5eb-e221-4578-a239-8be89c251133.gif)
 
 ## Getting Started
 
