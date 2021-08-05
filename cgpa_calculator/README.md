@@ -2,6 +2,10 @@
 
 A Flutter Project which calculates your CGPA.
 
+
+![cgpa_calc](https://user-images.githubusercontent.com/60571747/128336779-c870369b-4d3e-4f69-8d9b-f08ee9f61f00.gif)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
