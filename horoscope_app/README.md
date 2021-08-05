@@ -1,6 +1,10 @@
 # horoscope_app
 
-A new Flutter project.
+A new Flutter project with PaletteGenerator, Sliver and Hero Widget.
+
+
+![horoscope_app](https://user-images.githubusercontent.com/60571747/128168408-38166fa2-16f5-41ac-b6c9-b638133a9afc.gif)
+
 
 ## Getting Started
 
