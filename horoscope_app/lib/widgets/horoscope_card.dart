@@ -21,7 +21,8 @@ class HoroscopeCard extends StatelessWidget {
                       chosenHor: listedHoroscope,
                     )));
           },
-          leading: Hero(tag: listedHoroscope,
+          leading: Hero(
+            tag: listedHoroscope,
             child: Image.asset(
               'assets/images/' + listedHoroscope.miniPic,
               width: 64,
@@ -30,11 +31,11 @@ class HoroscopeCard extends StatelessWidget {
           ),
           title: Text(
             listedHoroscope.name,
-            style: myTextStyle.headline6,
+            style: myTextStyle.headlineMedium,
           ),
           subtitle: Text(
             listedHoroscope.date,
-            style: myTextStyle.bodyText2,
+            style: myTextStyle.bodyMedium,
           ),
           trailing: Icon(
             Icons.arrow_forward_ios,

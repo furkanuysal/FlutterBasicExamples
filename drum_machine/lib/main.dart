@@ -20,9 +20,17 @@ class DrumApp extends StatelessWidget {
 }
 
 class DrumMachine extends StatelessWidget {
-  final player = AudioCache();
-  void playSound(String voice) {
-    player.play('$voice.wav');
+  final drumButtons = [
+    [Colors.amberAccent, 'bip', Colors.blue, 'bongo'],
+    [Colors.purpleAccent, 'clap1', Colors.green, 'clap2'],
+    [Colors.deepOrangeAccent, 'clap3', Colors.deepPurpleAccent, 'crash'],
+    [Colors.red, 'how', Colors.lightGreenAccent, 'oobah'],
+    [Colors.indigoAccent, 'ridebel', Colors.pink, 'woo'],
+  ];
+
+  final player = AudioPlayer();
+  void playSound(String voice) async {
+    await player.play(AssetSource('$voice.wav'));
   }
 
   @override
@@ -31,70 +39,20 @@ class DrumMachine extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: buildTextButton(Colors.amberAccent, 'bip'),
-                ),
-                Expanded(
-                  child: buildTextButton(Colors.blue,'bongo'),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: buildTextButton(Colors.purpleAccent,'clap1'),
-                ),
-                Expanded(
-                  child: buildTextButton(Colors.green,'clap2'),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: buildTextButton(Colors.deepOrangeAccent,'clap3'),
-                ),
-                Expanded(
-                  child: buildTextButton(Colors.deepPurpleAccent,'crash'),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: buildTextButton(Colors.red,'how'),
-                ),
-                Expanded(
-                  child: buildTextButton(Colors.lightGreenAccent,'oobah'),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: buildTextButton(Colors.indigoAccent,'ridebel'),
-                ),
-                Expanded(
-                  child: buildTextButton(Colors.pink,'woo'),
-                ),
-              ],
-            ),
-          ),
-        ],
+        children: drumButtons.map((pair) => buildDrumRow(pair)).toList(),
       ),
     ));
+  }
+
+  Widget buildDrumRow(List<dynamic> pair) {
+    return Expanded(
+      child: Row(
+        children: [
+          Expanded(child: buildTextButton(pair[0] as Color, pair[1] as String)),
+          Expanded(child: buildTextButton(pair[2] as Color, pair[3] as String)),
+        ],
+      ),
+    );
   }
 
   TextButton buildTextButton(Color color, String voice) {
