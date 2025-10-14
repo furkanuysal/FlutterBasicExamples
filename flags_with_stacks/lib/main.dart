@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Colors.white, backgroundColor: Colors.red),
+                    foregroundColor: Colors.white, backgroundColor: Colors.red),
               ),
             ),
           ),
@@ -68,7 +68,8 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    backgroundColor: Colors.yellow, primary: Colors.black),
+                    backgroundColor: Colors.yellow,
+                    foregroundColor: Colors.black),
               ),
             ),
           ),
@@ -84,7 +85,8 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Colors.white, backgroundColor: Colors.blue[900]),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue[900]),
               ),
             ),
           ),
@@ -100,7 +102,7 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Colors.white, backgroundColor: Colors.red),
+                    foregroundColor: Colors.white, backgroundColor: Colors.red),
               ),
             ),
           ),
@@ -108,13 +110,15 @@ class HomePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextButton(
-                onPressed: () {Navigator.pushNamed(context, JapanFlag.routeName);},
+                onPressed: () {
+                  Navigator.pushNamed(context, JapanFlag.routeName);
+                },
                 child: Text(
                   'Japan',
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Colors.red, backgroundColor: Colors.white),
+                    foregroundColor: Colors.red, backgroundColor: Colors.white),
               ),
             ),
           ),
@@ -122,27 +126,33 @@ class HomePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextButton(
-                onPressed: () {Navigator.pushNamed(context, CameroonFlag.routeName);},
+                onPressed: () {
+                  Navigator.pushNamed(context, CameroonFlag.routeName);
+                },
                 child: Text(
                   'Cameroon',
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Color(0xfffcd116), backgroundColor: Color(0xff007a5e)),
+                    foregroundColor: Color(0xfffcd116),
+                    backgroundColor: Color(0xff007a5e)),
               ),
             ),
-          ),  
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextButton(
-                onPressed: () {Navigator.pushNamed(context, PanamaFlag.routeName);},
+                onPressed: () {
+                  Navigator.pushNamed(context, PanamaFlag.routeName);
+                },
                 child: Text(
                   'Panama',
                   style: TextStyle(fontSize: 20),
                 ),
                 style: TextButton.styleFrom(
-                    primary: Color(0xff072357), backgroundColor: Colors.white),
+                    foregroundColor: Color(0xff072357),
+                    backgroundColor: Colors.white),
               ),
             ),
           ),
