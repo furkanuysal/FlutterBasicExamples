@@ -71,7 +71,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       child: Icon(Icons.thumb_down),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(50, 50),
-                        primary: Colors.red,
+                        backgroundColor: Colors.red,
                       ),
                     ),
                   ),
@@ -86,7 +86,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       child: Icon(Icons.thumb_up),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(50, 50),
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                       ),
                     ),
                   ),
@@ -106,11 +106,11 @@ class _QuestionPageState extends State<QuestionPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("END"),
-            content: new Text("You have finished the test."),
+            title: Text("END"),
+            content: Text("You have finished the test."),
             actions: <Widget>[
-              new TextButton(
-                child: new Text("Try again"),
+              TextButton(
+                child: Text("Try again"),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setState(() {
@@ -123,8 +123,11 @@ class _QuestionPageState extends State<QuestionPage> {
           );
         },
       );
-    } else {trueFalseControl(choosenIcon);}
+    } else {
+      trueFalseControl(choosenIcon);
+    }
   }
+
   void trueFalseControl(bool choosenIcon) {
     setState(
       () {
