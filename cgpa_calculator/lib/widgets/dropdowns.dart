@@ -19,7 +19,7 @@ class _LetterDropDownState extends State<LetterDropDown> {
         alignment: Alignment.center,
         padding: Constants.dropDownPadding,
         decoration: BoxDecoration(
-            color: Constants.appColor.shade100.withOpacity(0.3),
+            color: Constants.appColor.shade100.withValues(alpha: 0.3),
             borderRadius: Constants.buttonBorderRadius),
         child: DropdownButton<double>(
           value: chosenLetterValue,
@@ -54,7 +54,7 @@ class _CreditDropDownState extends State<CreditDropDown> {
         alignment: Alignment.center,
         padding: Constants.dropDownPadding,
         decoration: BoxDecoration(
-            color: Constants.appColor.shade100.withOpacity(0.3),
+            color: Constants.appColor.shade100.withValues(alpha: 0.3),
             borderRadius: Constants.buttonBorderRadius),
         child: DropdownButton<double>(
           value: chosenCreditValue,

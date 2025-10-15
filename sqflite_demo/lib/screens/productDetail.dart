@@ -8,7 +8,9 @@ class ProductDetailsPage extends StatefulWidget {
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState(product);
 }
+
 DbHelper dbHelper = DbHelper();
+
 enum Choice { Delete, Update }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
@@ -22,7 +24,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         centerTitle: true,
         actions: <Widget>[
           PopupMenuButton<Choice>(
-            onSelected: selectPopup,
+              onSelected: selectPopup,
               itemBuilder: (BuildContext context) => <PopupMenuEntry<Choice>>[
                     PopupMenuItem<Choice>(
                       child: Text('Delete product'),
@@ -41,8 +43,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             productName: product.name,
             size: 25,
           ),
-          Container(width: 250,
-          height: 250,
+          Container(
+            width: 250,
+            height: 250,
             child: Image(
               fit: BoxFit.contain,
               image: NetworkImage(product.imageUrl!),
@@ -56,7 +59,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             productName: product.price.toString() + "₺",
             size: 30,
           ),
-          ButtonBar(children: <Widget>[
+          OverflowBar(children: <Widget>[
             TextButton(
               onPressed: () {
                 showDialog(
@@ -92,51 +95,51 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   void selectPopup(Choice choice) async {
     int result;
-    switch(choice){
+    switch (choice) {
       case Choice.Delete:
-      Navigator.pop(context,true);
-      result = await dbHelper.delete(product.id);
-      if(result!=0){
-         showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: new Text("Success"),
-                      content: new Text("${product.name} is deleted"),
-                      actions: <Widget>[
-                        new TextButton(
-                          child: new Text("Close"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-      }
-      break;
+        Navigator.pop(context, true);
+        result = await dbHelper.delete(product.id);
+        if (result != 0) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: new Text("Success"),
+                content: new Text("${product.name} is deleted"),
+                actions: <Widget>[
+                  new TextButton(
+                    child: new Text("Close"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }
+        break;
       case Choice.Update:
-      showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: new Text("Success"),
-                      content: new Text("${product.name} is updated"),
-                      actions: <Widget>[
-                        new TextButton(
-                          child: new Text("Close"),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text("Success"),
+              content: new Text("${product.name} is updated"),
+              actions: <Widget>[
+                new TextButton(
+                  child: new Text("Close"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
                   },
-                );
-      break;
+                ),
+              ],
+            );
+          },
+        );
+        break;
       default:
-      break;
+        break;
     }
   }
 }

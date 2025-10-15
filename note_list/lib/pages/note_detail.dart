@@ -26,7 +26,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _getData();
     });
     if (widget.editableNote != null) {
@@ -43,7 +43,9 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(widget.pageTitle!),
+        title: Text(widget.pageTitle!, style: Constants.textWhiteStyle),
+        backgroundColor: Constants.primarySwatch,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: allCategories.length <= 0
           ? Center(child: CircularProgressIndicator())
@@ -56,16 +58,19 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                     formFieldTitle(),
                     formFieldDesc(),
                     priorityRow(),
-                    ButtonBar(
+                    OverflowBar(
                       alignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          child: Text('Cancel'),
+                          child: Text(
+                            'Cancel',
+                            style: Constants.textWhiteStyle,
+                          ),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
-                              primary: Constants.cancelButtonColor),
+                              backgroundColor: Constants.cancelButtonColor),
                         ),
                         ElevatedButton(
                             child: Text('Save'),
@@ -135,6 +140,13 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+              width: 1.0,
+            ),
+          ),
         ),
       ),
     );
@@ -150,6 +162,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
           if (text!.length < 3) {
             return "At least enter 3 letters.";
           }
+          return null;
         },
         onSaved: (text) {
           noteTitle = text!;
@@ -159,6 +172,13 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
           labelText: "Note Title",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+              width: 1.0,
+            ),
           ),
         ),
       ),

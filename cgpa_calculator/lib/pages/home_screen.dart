@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
         border: OutlineInputBorder(
             borderRadius: Constants.borderRadius, borderSide: BorderSide.none),
         filled: true,
-        fillColor: Constants.appColor.shade100.withOpacity(0.3),
+        fillColor: Constants.appColor.shade100.withValues(alpha: 0.3),
       ),
     );
   }

@@ -49,7 +49,8 @@ class _AddProductPageState extends State<AddProductPage> {
                 "Save",
                 style: TextStyle(color: Colors.black),
               ),
-              style: ElevatedButton.styleFrom(primary: Colors.pinkAccent[100]),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pinkAccent[100]),
             )
           ],
         ),

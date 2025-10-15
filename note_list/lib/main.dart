@@ -14,10 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Constants.primarySwatch,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.quicksandTextTheme(Theme.of(context).textTheme),
-        accentColor: Constants.accentColor,
+        colorScheme:
+            ColorScheme.fromSwatch(primarySwatch: Constants.primarySwatch)
+                .copyWith(secondary: Constants.secondaryColor),
       ),
       home: NotePad(),
     );

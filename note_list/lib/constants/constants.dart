@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class Constants {
   static Text title = Text("NotePad", style: titleTextStyle);
   static final titleTextStyle =
-      GoogleFonts.quicksand(fontWeight: FontWeight.w900);
+      GoogleFonts.quicksand(fontWeight: FontWeight.w900, color: Colors.white);
   static const primarySwatch = Colors.deepPurple;
-  static Color accentColor = Colors.deepPurple[300] as Color;
+  static Color secondaryColor = Colors.deepPurple[300] as Color;
   static const cancelButtonColor = Colors.red;
   static final textStyleProp = GoogleFonts.quicksand(
       fontSize: 18, fontWeight: FontWeight.w900, color: primarySwatch);
@@ -16,4 +16,5 @@ class Constants {
       fontSize: 18, fontWeight: FontWeight.w800, color: Colors.black);
   static final priorityStyle = TextStyle(color: Colors.white);
   static final highPriorityStyle = TextStyle(color: primarySwatch);
+  static final textWhiteStyle = TextStyle(color: Colors.white);
 }

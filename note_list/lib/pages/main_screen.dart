@@ -21,6 +21,10 @@ class _NotePadState extends State<NotePad> {
     return Scaffold(
       appBar: AppBar(
         title: Constants.title,
+        backgroundColor: Constants.primarySwatch,
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         actions: [
           PopupMenuButton(itemBuilder: (context) {
             return [
@@ -86,52 +90,68 @@ class _NotePadState extends State<NotePad> {
                       newCategoryName = newValue!;
                     },
                     decoration: InputDecoration(
-                        labelText: "Category Name",
-                        border: OutlineInputBorder()),
+                      labelText: "Category Name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
                     validator: (categoryName) {
                       if (categoryName!.length < 2) {
                         return "At least enter 2 letters.";
                       }
+                      return null;
                     },
                   ),
                 ),
               ),
-              ButtonBar(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Cancel"),
-                    style: ElevatedButton.styleFrom(
-                        primary: Constants.cancelButtonColor),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        databaseHelper.addCategory(Category(newCategoryName)).then(
-                            (category_ID) // ignore: non_constant_identifier_names
-                            {
-                          if (category_ID > 0) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Category "$newCategoryName" has been added.'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                            debugPrint("Category added: $category_ID");
-                          }
-                        });
-                      }
-                    },
-                    child: Text("Save"),
-                    style:
-                        ElevatedButton.styleFrom(primary: Constants.primarySwatch),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OverflowBar(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancel", style: Constants.textWhiteStyle),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Constants.cancelButtonColor),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          databaseHelper
+                              .addCategory(Category(newCategoryName))
+                              .then(
+                                  (category_ID) // ignore: non_constant_identifier_names
+                                  {
+                            if (category_ID > 0) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Category "$newCategoryName" has been added.'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              debugPrint("Category added: $category_ID");
+                            }
+                          });
+                        }
+                      },
+                      child: Text("Save", style: Constants.textWhiteStyle),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Constants.primarySwatch),
+                    )
+                  ],
+                ),
               )
             ],
           );

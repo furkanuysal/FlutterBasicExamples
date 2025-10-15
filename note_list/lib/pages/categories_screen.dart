@@ -19,7 +19,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     _getCategories();
     return Scaffold(
         appBar: AppBar(
-          title: Text("Categories"),
+          backgroundColor: Constants.primarySwatch,
+          iconTheme: IconThemeData(color: Colors.white),
+          title: Text("Categories", style: Constants.textWhiteStyle),
         ),
         body: ListView.builder(
             itemCount: allCategories.length,
@@ -58,33 +60,36 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               children: [
                 Text(
                     "If you delete this category, all notes contained in this category will be deleted. Are you sure?"),
-                ButtonBar(
-                  children: [
-                    ElevatedButton(
-                      child: Text("Cancel"),
-                      style: ElevatedButton.styleFrom(
-                          primary: Constants.cancelButtonColor),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ElevatedButton(
-                        child: Text("Delete"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: OverflowBar(
+                    children: [
+                      ElevatedButton(
+                        child: Text("Cancel", style: Constants.textWhiteStyle),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Constants.cancelButtonColor),
                         onPressed: () {
-                          databaseHelper
-                              .deleteCategory(categoryID)
-                              .then((value) {
-                            if (value != 0) {
-                              setState(() {
-                                _getCategories();
-                              });
-                            }
-                          });
                           Navigator.of(context).pop();
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Category has been deleted.")));
-                        })
-                  ],
+                        },
+                      ),
+                      ElevatedButton(
+                          child: Text("Delete"),
+                          onPressed: () {
+                            databaseHelper
+                                .deleteCategory(categoryID)
+                                .then((value) {
+                              if (value != 0) {
+                                setState(() {
+                                  _getCategories();
+                                });
+                              }
+                            });
+                            Navigator.of(context).pop();
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Category has been deleted.")));
+                          })
+                    ],
+                  ),
                 )
               ],
             ),
@@ -116,54 +121,71 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       editableCategoryName = newValue!;
                     },
                     decoration: InputDecoration(
-                        labelText: "Category Name",
-                        border: OutlineInputBorder()),
+                      labelText: "Category Name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
                     validator: (categoryName) {
                       if (categoryName!.length < 2) {
                         return "At least enter 2 letters.";
                       }
+                      return null;
                     },
                   ),
                 ),
               ),
-              ButtonBar(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Cancel"),
-                    style: ElevatedButton.styleFrom(
-                        primary: Constants.cancelButtonColor),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        databaseHelper
-                            .updateCategory(Category.withID(
-                                category.category_ID, editableCategoryName))
-                            .then(
-                                (category_ID) // ignore: non_constant_identifier_names
-                                {
-                          if (category_ID != 0) {
-                            Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Category "$editableCategoryName" has been edited.'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          }
-                        });
-                      }
-                    },
-                    child: Text("Save"),
-                    style: ElevatedButton.styleFrom(
-                        primary: Constants.primarySwatch),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OverflowBar(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: Constants.textWhiteStyle,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Constants.cancelButtonColor),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          databaseHelper
+                              .updateCategory(Category.withID(
+                                  category.category_ID, editableCategoryName))
+                              .then(
+                                  (category_ID) // ignore: non_constant_identifier_names
+                                  {
+                            if (category_ID != 0) {
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Category "$editableCategoryName" has been edited.'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                            }
+                          });
+                        }
+                      },
+                      child: Text("Save", style: Constants.textWhiteStyle),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Constants.primarySwatch),
+                    )
+                  ],
+                ),
               )
             ],
           );

@@ -100,14 +100,16 @@ class _NoteListState extends State<NoteList> {
                               ),
                             ),
                           ),
-                          ButtonBar(
+                          OverflowBar(
                             children: [
                               ElevatedButton(
                                 onPressed: () =>
                                     _deleteNote(allNotes[index].note_ID!),
-                                child: Text('Delete'),
+                                child: Text('Delete',
+                                    style: Constants.textWhiteStyle),
                                 style: ElevatedButton.styleFrom(
-                                    primary: Constants.cancelButtonColor),
+                                    backgroundColor:
+                                        Constants.cancelButtonColor),
                               ),
                               ElevatedButton(
                                   onPressed: () =>
